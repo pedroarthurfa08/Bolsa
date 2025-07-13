@@ -1,9 +1,49 @@
-<ul>
-    <li><a 
-        <% if (paginaAtiva === 'home') { %> class="active" <% } %> 
-        href="/">Home</a></li>
-    <li><a 
-        <% if (paginaAtiva === 'operacao') { %> class="active" <% } %>
-        href="/operacoes">Operações</a></li>
-    <li><a href="#sobre">Sobre</a></li>
-</ul>
+<nav class="navbar bg-primary border-bottom border-body navbar-expand-lg navbar-fixed-top" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">iForum</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Forum</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/post/meusposts">Meus Posts</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+                <% if (locals.usuario) { %>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <%= usuario.username %>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/user/logout">Sair (logout)</a></li>
+                        </ul>
+                    </li>
+                <% } else { %>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Visitante
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/user/entrar">Entrar</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/user/novo">Criar Conta</a></li>
+                        </ul>
+                    </li>
+                <% } %>
+            </li>
+          </ul>
+        </div>
+    </div>
+</nav>

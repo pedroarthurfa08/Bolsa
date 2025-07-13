@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <% for (let i = 0; i < posts.length; i++) { %>
+                <% post = posts[i] %>
+                <div class="mb-5">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <%= post.titulo %>
+                        </h5>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= post.texto %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
