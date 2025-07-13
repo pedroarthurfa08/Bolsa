@@ -1,19 +1,24 @@
-<div class="container">
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <form action="/user/login" method="POST" class="container mt-5">
-                <div class="mb-3">
-                    <label for="inputUsername" class="form-label">username:</label>
-                    <input type="text" class="form-control" id="inputUsername" name="username">
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">password:</label>
-                    <input type="password" class="form-control" id="inputPassword" name="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+<div class="container mt-4">
+    <h2>Entrar</h2>
+    <% if (erros && erros.length > 0) { %>
+        <div class="alert alert-danger">
+            <ul>
+                <% erros.forEach(function(erro) { %>
+                    <li><%= erro %></li>
+                <% }); %>
+            </ul>
         </div>
-        <div class="col-3"></div>
-    </div>
+    <% } %>
+    <form method="post" action="/user/login">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required value="<%= form && form.email ? form.email : '' %>">
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+        <a href="/user/novo" class="btn btn-link">Criar Conta</a>
+    </form>
 </div>

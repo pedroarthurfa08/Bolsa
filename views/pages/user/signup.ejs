@@ -1,36 +1,32 @@
-<div class="container">
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <form action="/user/salvar" method="POST" class="container mt-5">
-                <div class="mb-3">
-                    <label for="inputUsername" class="form-label">username:</label>
-                    <input type="text" class="form-control" id="inputUsername" name="username">
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword1" class="form-label">password:</label>
-                    <input type="password" class="form-control" id="inputPassword1" name="password1">
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword2" class="form-label">repita o password:</label>
-                    <input type="password" class="form-control" id="inputPassword2" name="password2">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="inputEmail">email:</label>
-                    <input type="email" class="form-control" id="inputEmail" name="email"
-                        placeholder="fulano@email.com">
-                </div>
-                <div class="mb-3">
-                    <label for="inputFirstName" class="form-label">primeiro nome:</label>
-                    <input type="text" class="form-control" id="inputFirstName" name="nome">
-                </div>
-                <div class="mb-3">
-                    <label for="inpuLastName" class="form-label">último nome:</label>
-                    <input type="text" class="form-control" id="inputLastName" name="sobrenome">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+<div class="container mt-4">
+    <h2>Criar Conta</h2>
+    <% if (erros && erros.length > 0) { %>
+        <div class="alert alert-danger">
+            <ul>
+                <% erros.forEach(function(erro) { %>
+                    <li><%= erro %></li>
+                <% }); %>
+            </ul>
         </div>
-        <div class="col-3"></div>
-    </div>
+    <% } %>
+    <form method="post" action="/user/salvar">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" required value="<%= form && form.nome ? form.nome : '' %>">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required value="<%= form && form.email ? form.email : '' %>">
+        </div>
+        <div class="mb-3">
+            <label for="senha1" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha1" name="senha1" required>
+        </div>
+        <div class="mb-3">
+            <label for="senha2" class="form-label">Confirme a Senha</label>
+            <input type="password" class="form-control" id="senha2" name="senha2" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Criar Conta</button>
+        <a href="/user/entrar" class="btn btn-link">Já tenho conta</a>
+    </form>
 </div>
