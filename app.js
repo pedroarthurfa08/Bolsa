@@ -29,6 +29,7 @@ app.use(sessionOptions)
 const router = require('./routes/index-router')
 const userRouter = require('./routes/user-router')
 const postRouter = require('./routes/post-router')
+const operacaoRouter = require('./routes/operacao-router');
 
 app.use(function (req, res, next) {
   res.locals.usuario = req.session.usuario
@@ -49,6 +50,7 @@ app.set('view engine', 'ejs')
 app.use('/', router)
 app.use('/user', userRouter)
 app.use('/post', postRouter)
+app.use('/operacoes', operacaoRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on http://localhost:${port}`)

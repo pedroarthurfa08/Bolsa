@@ -16,6 +16,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/post/meusposts">Meus Posts</a>
                 </li>
+                <% if (locals.usuario) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/operacoes">Minhas Operações</a>
+                </li>
+                <% } %>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <li class="active">

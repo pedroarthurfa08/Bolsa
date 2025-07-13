@@ -1,0 +1,53 @@
+<div class="container mt-4">
+    <h2>Minhas Operações</h2>
+    <form class="row g-3 mb-3" method="get" action="/operacoes/buscar">
+        <div class="col-auto">
+            <input type="text" class="form-control" name="codigo_ativo" placeholder="Buscar por código do ativo" maxlength="7" pattern="[A-Z]{4}\d{1,2}">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-outline-primary mb-3">Buscar</button>
+        </div>
+        <div class="col-auto">
+            <a href="/operacoes/nova" class="btn btn-success mb-3">Nova Operação</a>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Código</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Valor Bruto</th>
+                <th>Taxa B3</th>
+                <th>Valor Líquido</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (operacoes.length === 0) { %>
+                <tr><td colspan="9" class="text-center">Nenhuma operação encontrada.</td></tr>
+            <% } %>
+            <% operacoes.forEach(function(op) { %>
+                <tr>
+                    <td><%= op.data_operacao.toISOString ? op.data_operacao.toISOString().slice(0,10) : op.data_operacao %></td>
+                    <td><%= op.tipo %></td>
+                    <td><%= op.codigo_ativo %></td>
+                    <td><%= op.quantidade %></td>
+                    <td>R$ <%= op.preco_unitario.toFixed ? op.preco_unitario.toFixed(2) : op.preco_unitario %></td>
+                    <td>R$ <%= op.valor_bruto.toFixed ? op.valor_bruto.toFixed(2) : op.valor_bruto %></td>
+                    <td>R$ <%= op.taxa_b3.toFixed ? op.taxa_b3.toFixed(2) : op.taxa_b3 %></td>
+                    <td>R$ <%= op.valor_liquido.toFixed ? op.valor_liquido.toFixed(2) : op.valor_liquido %></td>
+                    <td>
+                        <a href="/operacoes/<%= op.id %>/editar" class="btn btn-sm btn-primary">Editar</a>
+                        <form method="post" action="/operacoes/<%= op.id %>/deletar" style="display:inline" onsubmit="return confirm('Tem certeza que deseja deletar esta operação?');">
+                            <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <a href="/operacoes" class="btn btn-link">Ver todas</a>
+</div> 

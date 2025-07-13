@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <h2><%= operacao && operacao.id ? 'Editar Operação' : 'Nova Operação' %></h2>
+    <% if (erro) { %>
+        <div class="alert alert-danger"><%= erro %></div>
+    <% } %>
+    <form method="post" action="<%= operacao && operacao.id ? '/operacoes/' + operacao.id + '/editar' : '/operacoes/nova' %>">
+        <div class="mb-3">
+            <label for="data_operacao" class="form-label">Data da Operação</label>
+            <input type="date" class="form-control" id="data_operacao" name="data_operacao" required value="<%= operacao.data_operacao || '' %>">
+        </div>
+        <div class="mb-3">
+            <label for="tipo" class="form-label">Tipo</label>
+            <select class="form-control" id="tipo" name="tipo" required>
+                <option value="">Selecione</option>
+                <option value="compra" <%= operacao.tipo === 'compra' ? 'selected' : '' %>>Compra</option>
+                <option value="venda" <%= operacao.tipo === 'venda' ? 'selected' : '' %>>Venda</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="codigo_ativo" class="form-label">Código do Ativo</label>
+            <input type="text" class="form-control" id="codigo_ativo" name="codigo_ativo" maxlength="7" pattern="[A-Z]{4}\d{1,2}" required value="<%= operacao.codigo_ativo || '' %>">
+            <div class="form-text">Ex: ITSA4, BBSE3, BCFF11, GOGL34</div>
+        </div>
+        <div class="mb-3">
+            <label for="quantidade" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" id="quantidade" name="quantidade" min="1" required value="<%= operacao.quantidade || '' %>">
+        </div>
+        <div class="mb-3">
+            <label for="preco_unitario" class="form-label">Preço Unitário</label>
+            <input type="number" step="0.01" class="form-control" id="preco_unitario" name="preco_unitario" min="0.01" required value="<%= operacao.preco_unitario || '' %>">
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="/operacoes" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div> 
