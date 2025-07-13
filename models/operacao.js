@@ -1,4 +1,4 @@
-const db = require('../db/postgres');
+const db = require('../databases/postgres');
 
 // Expressão regular para validar código de ativo (ex: ITSA4, BBSE3, BCFF11, GOGL34)
 const regexCodigoAtivo = /^[A-Z]{4}\d{1,2}$/;

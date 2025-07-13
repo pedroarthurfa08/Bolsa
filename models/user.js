@@ -1,4 +1,4 @@
-const pool = require('../db/postgres');
+const pool = require('../databases/postgres');
 const validator = require('validator');
 const bcrypt = require("bcryptjs")
 
